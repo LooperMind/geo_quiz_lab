@@ -1,5 +1,7 @@
 package com.bignerdranch.android.geomain
 
+
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -105,8 +107,14 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show()
         }
         else{
-            val your_score = getString(R.string.your_score) + " ${quizViewModel.questionsAnsweredCorrectly}/${quizViewModel.questionsAnswered}"
-            Toast.makeText(this, your_score, Toast.LENGTH_SHORT).show()
+            //val your_score = getString(R.string.your_score) + " ${quizViewModel.questionsAnsweredCorrectly}/${quizViewModel.questionsAnswered}"
+            //Toast.makeText(this, your_score, Toast.LENGTH_SHORT).show()
+            val intent = ResultActivity.newIntent(
+                    this@MainActivity,
+                    quizViewModel.questionsAnsweredCorrectly,
+                    quizViewModel.questionsAnswered
+            )
+            startActivity(intent)
             quizViewModel.ResetQuestions()
         }
     }
